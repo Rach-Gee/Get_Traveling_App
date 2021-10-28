@@ -15,6 +15,10 @@ const tripsSchema = new Schema({
     type: Boolean,
     require: true,
     default: false,
+  },
+  itinerary: {
+    type: Schema.Types.ObjectId,
+    ref: 'Itinerary'
   }
 });
 

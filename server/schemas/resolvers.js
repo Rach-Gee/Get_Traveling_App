@@ -1,8 +1,21 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Itinerary, Trips, User } = require('../models');
 const { signToken } = require('../utils/auth');
+const { GraphQLScalarType } = require('graphql');
+
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  parseValue(value) {
+    return new Date(value);
+  },
+  serialize(value) {
+    return value.toISOString();
+  },
+})
 
 const resolvers = {
+  Date: dateScalar,
+
   Query: {
     users: async () => {
       return User.find().populate('trip');
@@ -17,12 +30,12 @@ const resolvers = {
     trip: async (parent, { tripsId }) => {
       return Trips.findOne({ _id: tripsId });
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('trip');
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id }).populate('trips');
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
   },
 
   Mutation: {
@@ -115,4 +128,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+module.exports = resolvers 

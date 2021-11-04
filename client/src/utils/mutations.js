@@ -24,4 +24,24 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_TRIP = gql`
+  mutation addTrip($name: String!) {
+    addTrip(name: $name) {
+      _id
+      name
+      date
+      completed
+      itinerarys {
+        _id
+        name
+        completed
+        date
+        details
+      }
+    }
+  }
+`;
+
+
+
 

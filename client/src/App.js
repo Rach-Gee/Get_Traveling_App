@@ -8,6 +8,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Header from './componets/Header';
+import Footer from './componets/Foooter';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/SignUp'
 
@@ -34,14 +37,23 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
+  <ApolloProvider client={client}>
+    <Router>
+    <div className="flex-column justify-flex-start min-100-vh">
+      <Header />
+      <div className="container">
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+        </div>
+          <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );

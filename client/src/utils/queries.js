@@ -6,10 +6,9 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      trip {
+      trips {
         _id
         name
-        date
         completed
       }
     }
@@ -18,10 +17,9 @@ export const QUERY_USER = gql`
 
 export const QUERY_TRIPS = gql`
 query getTrips {
-    trip {
+    trips {
         _id
         name
-        date
         completed
     }
   }
@@ -33,10 +31,9 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      trip {
+      trips {
         _id
         name
-        date
         completed
       }
     }

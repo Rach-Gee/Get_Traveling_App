@@ -18,24 +18,24 @@ const resolvers = {
 
   Query: {
     users: async () => {
-      return User.find().populate('trip');
+      return User.find().populate('trips');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('trip');
+      return User.findOne({ username }).populate('trips');
     },
     trips: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Trips.find(params).sort({ createdAt: -1 });
+      return Trips.find(params);
     },
     trip: async (parent, { tripsId }) => {
       return Trips.findOne({ _id: tripsId });
     },
-    // me: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return User.findOne({ _id: context.user._id }).populate('trips');
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('trips');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 
   Mutation: {
@@ -71,7 +71,6 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { trips: trip._id } }
         );
-            console.log(user)
         return trip;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -95,16 +94,16 @@ const resolvers = {
     },
     removeTrip: async (parent, { tripsId }, context) => {
       if (context.user) {
-        const trip = await Trips.findOneAndDelete({
+        const trips = await Trips.findOneAndDelete({
           _id: tripsId,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { trip: trip._id } }
+          { $pull: { trips: trips._id } }
         );
 
-        return trip;
+        return trips;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

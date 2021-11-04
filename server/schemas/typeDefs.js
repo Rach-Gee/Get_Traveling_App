@@ -14,7 +14,6 @@ type User {
   type Trip {
     _id: ID
     name: String
-    date: Date
     completed: Boolean
     itinerary: [Itinerary]!
   }
@@ -37,6 +36,7 @@ type User {
     user(username: String!): User
     trips(username: String): [Trip]
     trip(tripsId: ID!): Trip
+    me: User
   }
 
   type Mutation {

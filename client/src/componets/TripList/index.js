@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Auth from '../../utils/auth';
+
 const TripList = ({
 trips,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
-//   if (!trips.length) {
-//     return <h3>No Trips Yet</h3>;
-//   }
+  if (!trips.length) {
+    return <h3>No Trips Yet</h3>;
+  }
 
   return (
     <div>
+    {Auth.loggedIn() ? (
+      <>
       {showTitle && <h3>{title}</h3>}
       {trips &&
         trips.map((trip) => (
@@ -21,17 +25,13 @@ trips,
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${trip.name}`}
+                  to={`${trip.name}`}
                 >
                   {trip.name} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    leaving on {trip.date}
-                  </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                  leaving on {trip.date}
                   </span>
                 </>
               )}
@@ -45,7 +45,11 @@ trips,
             >
             </Link>
           </div>
-        ))}
+        ))}         
+      </>
+          ) : (
+        <p></p>
+      )}
     </div>
   );
 };

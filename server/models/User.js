@@ -17,9 +17,9 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 8,
   },
-  Trips: [
+  trips: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Trips',

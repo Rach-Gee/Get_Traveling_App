@@ -27,7 +27,7 @@ const TripForm = () => {
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
-        data: { me: { ...me, trip: [...me.trip, addTrip] } },
+        data: { me: { ...me, trips: [...me.trips, addTrip] } },
       });
     },
   });
@@ -59,10 +59,9 @@ const TripForm = () => {
 
   return (
     <div>
-      <h3>What holiday are we going on?</h3>
-
       {Auth.loggedIn() ? (
         <>
+          <h3>What holiday are we going on?</h3>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -92,7 +91,7 @@ const TripForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to add a trip. Please{' '}
+          You need to be logged in to add/view your trip. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

@@ -61,18 +61,17 @@ const resolvers = {
 
       return { token, user };
     },
-    addTrip: async (parent, { name, date }, context) => {
+    addTrip: async (parent, { name }, context) => {
       if (context.user) {
         const trip = await Trips.create({
           name,
-          date,
         });
-
+            console.log(trip)
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { trips: trip._id } }
         );
-
+            console.log(user)
         return trip;
       }
       throw new AuthenticationError('You need to be logged in!');

@@ -31,6 +31,7 @@ const TripForm = () => {
       });
     },
   });
+  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -50,7 +51,7 @@ const TripForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    console.log(name)
     if (name === 'name') {
       setName(value);
     }
@@ -67,14 +68,14 @@ const TripForm = () => {
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
-              <textarea
-                name="tripName"
+              <input
+                name="name"
                 placeholder="Where are you going..."
                 value={name}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
-              ></textarea>
+              ></input>
             </div>
 
             <div className="col-12 col-lg-3">

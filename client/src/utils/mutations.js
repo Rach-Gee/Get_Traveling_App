@@ -29,19 +29,19 @@ export const ADD_TRIP = gql`
     addTrip(name: $name) {
       _id
       name
-      date
       completed
-      itinerarys {
-        _id
-        name
-        completed
-        date
-        details
-      }
     }
   }
 `;
 
+// insert above under }
+// itinerarys {
+//   _id
+//   name
+//   completed
+//   date
+//   details
+// }
 
 
 

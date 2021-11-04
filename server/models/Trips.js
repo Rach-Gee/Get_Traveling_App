@@ -7,10 +7,6 @@ const tripsSchema = new Schema({
     unique: true,
     trim: true,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
   completed: {
     type: Boolean,
     require: true,

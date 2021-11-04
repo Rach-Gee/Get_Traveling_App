@@ -42,7 +42,7 @@ type User {
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addTrip(name: String!, date: Date!): Trip
+    addTrip(name: String!): Trip
     addItinerary(
       name: String!
       completed: Boolean!

@@ -31,17 +31,32 @@ export const ADD_TRIP = gql`
       name
       completed
     }
+    itinerarys {
+      _id
+      name
+      completed
+      date
+      details
+}
   }
 `;
 
-// insert above under }
-// itinerarys {
-//   _id
-//   name
-//   completed
-//   date
-//   details
-// }
+export const ADD_ITINERARY = gql`
+  mutation addItinerary($tripId: ID!, $name: String!) {
+    addItinerary(tripId: $tripId, name: $name) {
+      _id
+      name
+      completed
+      comments {
+        _id
+        name
+        completed
+        date
+        details
+      }
+    }
+  }
+`;
 
 
 

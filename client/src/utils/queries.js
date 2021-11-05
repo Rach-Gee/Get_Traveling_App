@@ -39,3 +39,32 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_ITINERARY = gql`
+query getItinerary {
+    interary {
+        _id
+        name
+        completed
+        date
+        details
+    }
+  }
+`;
+
+export const QUERY_SINGLE_TRIP = gql`
+  query getSingleTrip($tripId: ID!) {
+    thought(tripId: $tripId) {
+      _id
+      name
+      completed
+      interary {
+        _id
+        name
+        completed
+        date
+        details
+      }
+    }
+  }
+`;

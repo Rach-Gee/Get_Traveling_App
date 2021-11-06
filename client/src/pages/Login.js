@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-// import map from '../images/worldMap.jpg';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+
+import { Image } from "@chakra-ui/react"
+import map from '../componets/images/worldMap.jpg'
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -42,8 +44,13 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
+    <main className="">
+      <aside>
+          <Image src={map} 
+          alt="world map"
+          />
+      </aside>
+      <div className="flex-row justify-center mb-4">
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">

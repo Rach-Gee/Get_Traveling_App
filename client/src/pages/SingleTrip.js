@@ -43,8 +43,7 @@ const SingleTrip = () => {
         >
           {trip.name}
         </blockquote>
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+      </div>      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <TripForm tripID={trip._id} />
       </div>
       <div className="my-5">

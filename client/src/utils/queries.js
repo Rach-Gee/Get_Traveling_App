@@ -54,7 +54,7 @@ query getItinerary {
 
 export const QUERY_SINGLE_TRIP = gql`
   query getSingleTrip($tripId: ID!) {
-    thought(tripId: $tripId) {
+    trip(tripId: $tripId) {
       _id
       name
       completed

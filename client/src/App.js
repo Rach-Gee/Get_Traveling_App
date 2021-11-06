@@ -16,6 +16,8 @@ import Login from './pages/Login';
 import Signup from './pages/SignUp'
 import SingleTrip from './pages/SingleTrip'
 
+import { ChakraProvider } from "@chakra-ui/react"
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,9 +40,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function App( Component ) {
   return (
   <ApolloProvider client={client}>
+           <ChakraProvider>
     <Router>
     <div className="flex-column justify-flex-start min-100-vh">
       <Header />
@@ -64,6 +67,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </ChakraProvider>
     </ApolloProvider>
   );
 }

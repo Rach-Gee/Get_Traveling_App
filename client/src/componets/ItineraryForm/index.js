@@ -5,10 +5,17 @@ import { useMutation } from '@apollo/client';
 import { ADD_ITINERARY } from '../../utils/mutations';
 import { QUERY_ITINERARY, QUERY_ME } from '../../utils/queries';
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import Auth from '../../utils/auth';
 
 const ItineraryForm = () => {
+  const [startDate, setStartDate] = useState(new Date());
   const [name, setName] = useState('');
+  const [details, setDetails] = useState('');
+  const [endDate, setEndDate] = useState(new Date());
+
 
   const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
     update(cache, { data: { addItinerary } }) {
@@ -39,11 +46,17 @@ const ItineraryForm = () => {
     try {
       const { data } = await addItinerary({
         variables: {
+          startDate,
+          endDate,
           name,
+          details,
         },
       });
 
       setName('');
+      setStartDate('');
+      setEndDate('');
+      setDetails('');
     } catch (err) {
       console.error(err);
     }
@@ -54,6 +67,14 @@ const ItineraryForm = () => {
     console.log(name)
     if (name === 'name') {
       setName(value);
+    }
+  };
+
+  const handleChange1 = (event) => {
+    const { details, value1 } = event.target;
+    console.log(details)
+    if (details === 'details') {
+      setDetails(value1);
     }
   };
 
@@ -69,12 +90,45 @@ const ItineraryForm = () => {
             <div className="col-12 col-lg-9">
               <input
                 name="name"
-                placeholder="What are you going?"
+                placeholder="Title?"
                 value={name}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></input>
+            </div>
+
+            <div className="col-12 col-lg-9">
+              <input
+                name="details"
+                placeholder="Description?"
+                value={details}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleChange1}
+              ></input>
+            </div>
+
+            <div className="col-12 col-lg-9">
+            <div> 
+              <p> Date From </p>
+                <DatePicker
+                  selected={startDate}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate} // add the endDate to your startDate DatePicker now that it is defined
+                  onChange={date => setStartDate(date)}
+                />
+                <p> Date To </p>
+                <DatePicker
+                  selected={endDate}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  onChange={date => setEndDate(date)}
+                />
+              </div>
             </div>
 
             <div className="col-12 col-lg-3">

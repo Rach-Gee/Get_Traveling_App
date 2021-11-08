@@ -10,7 +10,7 @@ itinerary,
   showUsername = true,
 }) => {
   // if (!itinerary.length) {
-  //   return <h3>No Trips Yet</h3>;
+  //   return <h3>No Itinerary Yet</h3>;
   // }
 
   return (

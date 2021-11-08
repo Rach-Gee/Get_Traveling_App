@@ -31,13 +31,6 @@ export const ADD_TRIP = gql`
       name
       completed
     }
-    itinerarys {
-      _id
-      name
-      completed
-      date
-      details
-}
   }
 `;
 
@@ -47,11 +40,12 @@ export const ADD_ITINERARY = gql`
       _id
       name
       completed
-      comments {
+      itinerary {
         _id
         name
         completed
-        date
+        startDate
+        endDate
         details
       }
     }

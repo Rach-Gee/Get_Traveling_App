@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
@@ -25,6 +26,7 @@ const SingleTrip = () => {
   }
   return (
     <div className="my-3">
+      <Link to="/">back to the homepage.</Link>
       <h3 className="card-header bg-dark text-light p-2 m-0">
         {trip.name} <br />
         <span style={{ fontSize: '1rem' }}>

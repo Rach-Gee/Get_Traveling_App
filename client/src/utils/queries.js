@@ -46,7 +46,8 @@ query getItinerary {
         _id
         name
         completed
-        date
+        startDate
+        endDate
         details
     }
   }
@@ -62,7 +63,8 @@ export const QUERY_SINGLE_TRIP = gql`
         _id
         name
         completed
-        date
+        startDate
+        endDate
         details
       }
     }

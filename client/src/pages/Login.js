@@ -86,6 +86,7 @@ const Login = (props) => {
                 </button>
               </form>
             )}
+            <p><Link to="/signup"> Dont have an account, Signup now!</Link> </p>
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white">

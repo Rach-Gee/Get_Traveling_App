@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react"
+import { Checkbox, Box, Heading, } from "@chakra-ui/react"
 
 const TripList = ({
 trips,
@@ -18,20 +18,25 @@ trips,
     <div>
     {Auth.loggedIn() ? (
       <>
-      {showTitle && <h3>{title}</h3>}
       {trips &&
         trips.map((trip) => (
-          <div key={trip._id} className="card m-2 p-5 btn">
+        <Box
+        p={5}
+        shadow="md"
+        borderWidth="1px"
+        borderRadius="md">
+          <div key={trip._id} className="card m-2 btn">
           <Checkbox size="lg" >
             <Link
               className="btn btn-primary btn-block"
               to={`/trip/${trip._id}`}
-            ><p>{trip.name}</p>
+            >
+            <Heading size="lg">{trip.name}</Heading>
             </Link>
           </Checkbox>
           </div>
-
-        ))}         
+        </Box>
+        ))}        
       </>
           ) : (
         <p></p>

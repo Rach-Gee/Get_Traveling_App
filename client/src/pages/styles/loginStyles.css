@@ -22,4 +22,14 @@
     background-size: auto !important;
 }
 
+.logOutBtn {
+    background-color: skyblue !important;
+    color: white;
+    padding: .5rem !important;
+    margin: .5rem !important;
+}
 
+.logOutCon {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}

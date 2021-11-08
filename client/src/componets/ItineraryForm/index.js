@@ -95,7 +95,6 @@ const ItineraryForm = () => {
     <div>
       {Auth.loggedIn() ? (
         <>
-          <h3>Add a leg?</h3>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -128,6 +127,7 @@ const ItineraryForm = () => {
               <p> Date From </p>
                 <DatePicker
                   selected={startDate}
+                  className="form-input w-100"
                   selectsStart
                   startDate={startDate}
                   endDate={endDate} // add the endDate to your startDate DatePicker now that it is defined
@@ -136,6 +136,7 @@ const ItineraryForm = () => {
                 <p> Date To </p>
                 <DatePicker
                   selected={endDate}
+                  className="form-input w-100"
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}

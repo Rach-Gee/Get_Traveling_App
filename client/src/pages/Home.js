@@ -9,6 +9,7 @@ import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
+
 const Home = () => {
   const { username: userParam } = useParams();
 
@@ -39,7 +40,7 @@ const Home = () => {
     <div>
               {!userParam && (
           <div
-            className="col-12 col-md-10 mb-3 p-3"
+            className="col-12 col-md-10 m-5 p-3"
             style={{ border: '1px dotted #1a1a1a' }}
           >
             <TripForm />
@@ -47,7 +48,7 @@ const Home = () => {
         )}
       <div className="flex-row justify-center mb-3">
 
-        <div className="col-12 col-md-10 mb-5">
+        <div>
           <TripList
             trips={user.trips}
             title={`${user.username}'s trips...`}

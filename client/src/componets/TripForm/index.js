@@ -61,7 +61,6 @@ const TripForm = () => {
     <div>
       {Auth.loggedIn() ? (
         <>
-          <h3>What holiday are we going on?</h3>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -69,7 +68,7 @@ const TripForm = () => {
             <div className="col-12 col-lg-9">
               <input
                 name="name"
-                placeholder="Where are you going..."
+                placeholder="Give your holiday a name..."
                 value={name}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}

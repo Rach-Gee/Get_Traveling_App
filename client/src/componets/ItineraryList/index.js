@@ -9,9 +9,9 @@ itinerary,
   showTitle = true,
   showUsername = true,
 }) => {
-  // if (!itinerary.length) {
-  //   return <h3>No Itinerary Yet</h3>;
-  // }
+  if (!itinerary.length) {
+    return <h3>No Itinerary Yet</h3>;
+  }
 
   return (
     <div>
@@ -27,7 +27,7 @@ itinerary,
                   className="text-light"
                   to={`${itinerary.name}`}
                 >
-                  {itinerary.name} <br />
+                  {itinerary.name} from {itinerary.startDate} to {itinerary.endDate}<br />
                 </Link>
               ) : (
                 <>
@@ -37,13 +37,8 @@ itinerary,
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{itinerary.name}</p>
+              <p>{itinerary.details}</p>
             </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/itinerary/${itinerary._id}`}
-            >
-            </Link>
           </div>
         ))}         
       </>

@@ -66,7 +66,6 @@ const resolvers = {
         const trip = await Trips.create({
           name,
         });
-            console.log(trip)
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { trips: trip._id } }
@@ -76,7 +75,6 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addItinerary: async (parent, { trip, name, completed, startDate, endDate, details }, context) => {
-      console.log('name', {name});
       if (context.user) {
         const newItinerary = await Itinerary.create({
           name, completed, startDate, endDate, details

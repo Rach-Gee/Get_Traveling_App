@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
@@ -9,6 +8,8 @@ import ItineraryList from '../componets/ItineraryList';
 import ItineraryForm from '../componets/ItineraryForm';
 
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
+
+import { Heading } from "@chakra-ui/react"
 
 const SingleTrip = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -26,17 +27,12 @@ const SingleTrip = () => {
   }
   return (
     <div className="my-3">
-      <h3 className="">
-        {trip.name} <br />
-        <span style={{ fontSize: '1rem' }}>
-          {trip.name}
-        </span>
-      </h3>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <ItineraryForm tripID={trip._id} />
-      </div>
+      <Heading size="lg">What is happening for {trip.name}</Heading>
       <div className="my-5">
         <ItineraryList itinerary={trip.itinerary} />
+      </div>
+      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+        <ItineraryForm tripID={trip._id} />
       </div>
     </div>
   );

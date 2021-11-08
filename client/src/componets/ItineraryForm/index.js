@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_ITINERARY } from '../../utils/mutations';
-import { QUERY_ITINERARY, QUERY_ME } from '../../utils/queries';
+import { QUERY_ITINERARY, QUERY_SINGLE_TRIP } from '../../utils/queries';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,31 +22,22 @@ const ItineraryForm = () => {
     return location.pathname.split('/').slice(-1)[0]
   }
 
-  const [addItinerary, { error }] = useMutation(ADD_ITINERARY)
+  const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
+    update(cache, { data: { addItinerary } }) {
+      try {
+        const  trip  = cache.readQuery({ query: QUERY_SINGLE_TRIP });      
+        console.log(trip);
+        cache.writeQuery({
+          query: QUERY_SINGLE_TRIP,
+          data: { trip: { ...trip, intinerary: [...trip.intinerary, addItinerary] } },
+        });
+      } catch (e) {
+        console.error(e);
+      }
 
-  // TODO: FIX THIS!
-  // const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
-  //   update(cache, { data: { addItinerary } }) {
-  //     try {
-  //       const itinerary  = cache.readQuery({ query: QUERY_ITINERARY }) || {};
-        
 
-  //       cache.writeQuery({
-  //         query: QUERY_ITINERARY,
-  //         data: { itinerary: [addItinerary, ...itinerary] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: { me: { ...me, itinerary: [...me.itinerary, addItinerary] } },
-  //     });
-  //   },
-  // });
+    },
+  });
   
 
   const handleFormSubmit = async (event) => {
@@ -75,7 +66,6 @@ const ItineraryForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name)
     if (name === 'name') {
       setName(value);
     }
@@ -83,9 +73,6 @@ const ItineraryForm = () => {
 
   const handleChange1 = (event) => {
     const { name, value } = event.target;
-    console.log('value', value)
-    console.log(event.target);
-    console.log(details)
     if (name === 'details') {
       setDetails(value);
     }

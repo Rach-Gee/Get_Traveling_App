@@ -51,7 +51,6 @@ const TripForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name)
     if (name === 'name') {
       setName(value);
     }

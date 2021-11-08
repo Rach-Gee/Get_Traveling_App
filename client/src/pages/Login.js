@@ -5,7 +5,7 @@ import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-import { Image } from "@chakra-ui/react"
+import { Image, HStack, FormControl, } from "@chakra-ui/react"
 import map from '../componets/images/worldMap.jpg'
 
 const Login = (props) => {
@@ -44,15 +44,16 @@ const Login = (props) => {
   };
 
   return (
-    <main className="">
+    <main className="loginPage">
+    <HStack spacing="24px">
       <aside>
           <Image src={map} 
           alt="world map"
           />
       </aside>
-      <div className="flex-row justify-center mb-4">
+      <div className="flex-row justify-center loginForm">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <h4 className="card-header">Login</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -60,6 +61,7 @@ const Login = (props) => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              <FormControl>
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -85,6 +87,7 @@ const Login = (props) => {
                   Submit
                 </button>
               </form>
+            </FormControl>
             )}
             <p><Link to="/signup"> Dont have an account, Signup now!</Link> </p>
 
@@ -96,6 +99,7 @@ const Login = (props) => {
           </div>
         </div>
       </div>
+    </HStack>
     </main>
   );
 };

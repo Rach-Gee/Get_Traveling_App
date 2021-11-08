@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
+import { Checkbox, CheckboxGroup } from "@chakra-ui/react"
+
 const TripList = ({
 trips,
   title,
   showTitle = true,
-  showUsername = true,
 }) => {
   if (!trips.length) {
     return <h3>No Trips Yet</h3>;
@@ -20,31 +21,16 @@ trips,
       {showTitle && <h3>{title}</h3>}
       {trips &&
         trips.map((trip) => (
-          <div key={trip._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`${trip.name}`}
-                >
-                  {trip.name} <br />
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: '1rem' }}>
-                  </span>
-                </>
-              )}
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{trip.name}</p>
-            </div>
+          <div key={trip._id} className="card m-2 p-5 btn">
+          <Checkbox size="lg" >
             <Link
-              className="btn btn-primary btn-block btn-squared"
+              className="btn btn-primary btn-block"
               to={`/trip/${trip._id}`}
-            >
+            ><p>{trip.name}</p>
             </Link>
+          </Checkbox>
           </div>
+
         ))}         
       </>
           ) : (

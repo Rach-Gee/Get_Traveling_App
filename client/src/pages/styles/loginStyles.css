@@ -1,11 +1,25 @@
-.loginImage {
-    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/world-map-paint-drop-michael-tompsett.jpg");
-    background-color: #cccccc;
-    margin-left: 0% !important;
+* { 
+    margin: 0!important;
+    padding: 0!important; 
 }
 
 .headerFont {
     font-size: 20px;
     font-family: Cursive;
 }
+
+.loginPage {
+    background-color: skyblue;
+    height: 100vh !important;
+}
+
+.loginForm {
+    height: 100vh;
+}
+
+.worldMap {
+    object-fit:fill;
+    background-size: auto !important;
+}
+
 

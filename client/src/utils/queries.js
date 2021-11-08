@@ -54,12 +54,12 @@ query getItinerary {
 `;
 
 export const QUERY_SINGLE_TRIP = gql`
-  query getSingleTrip($tripId: ID!) {
-    trip(tripId: $tripId) {
+  query getSingleTrip($tripsId: ID!) {
+    trip(tripsId: $tripsId) {
       _id
       name
       completed
-      interary {
+      itinerary {
         _id
         name
         completed

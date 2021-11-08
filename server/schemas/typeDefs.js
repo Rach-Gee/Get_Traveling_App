@@ -22,7 +22,8 @@ type User {
     _id: ID
     name: String
     completed: Boolean
-    date: Date
+    startDate: Date
+    endDate: Date
     details: String
   }
 
@@ -46,7 +47,8 @@ type User {
     addItinerary(
       name: String!
       completed: Boolean!
-      date: Date!
+      startDate: Date!
+      endDate: Date!
       details: String!
       trip: ID!
     ): Itinerary

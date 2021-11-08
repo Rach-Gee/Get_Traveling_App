@@ -16,7 +16,7 @@ const SingleTrip = () => {
 
   const { loading, data } = useQuery(QUERY_SINGLE_TRIP, {
     // pass URL parameter
-    variables: { tripId: tripId },
+    variables: { trip: tripId },
   });
 
   const trip = data?.trip || {};

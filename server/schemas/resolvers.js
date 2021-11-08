@@ -25,10 +25,10 @@ const resolvers = {
     },
     trips: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Trips.find(params);
+      return Trips.find(params).populate('itinerary');
     },
     trip: async (parent, { tripsId }) => {
-      return Trips.findOne({ _id: tripsId });
+      return Trips.findOne({ _id: tripsId }).populate('itinerary');
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -75,23 +75,34 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addItinerary: async (parent, { name, completed, date, details }, context) => {
+    addItinerary: async (parent, { trip, name, completed, startDate, endDate, details }, context) => {
+      console.log('name', {name});
       if (context.user) {
-        return Itinerary.findOneAndUpdate(
-          { _id: tripsId },
-          {
-            $addToSet: {
-              itinerary: { name, completed, date, details },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
+        const newItinerary = await Itinerary.create({
+          name, completed, startDate, endDate, details
+        })
+        const updated = await Trips.findOneAndUpdate({_id: trip}, {
+          $push: {
+            itinerary: newItinerary._id
           }
-        );
+        }, {
+          new: true,
+          runValidators: true,
+        });
+
+        return updated;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+  //TODO: Add check boxes FIX THIS
+    // checkTrip(){
+    //   update  the trip change the boolean into true
+    // }
+
+    // check Itinerary(){
+    //   // find one and update itienraray
+    // }
+
     removeTrip: async (parent, { tripsId }, context) => {
       if (context.user) {
         const trips = await Trips.findOneAndDelete({

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_ITINERARY } from '../../utils/mutations';
@@ -16,28 +16,37 @@ const ItineraryForm = () => {
   const [details, setDetails] = useState('');
   const [endDate, setEndDate] = useState(new Date());
 
+  const location = useLocation();
 
-  const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
-    update(cache, { data: { addItinerary } }) {
-      try {
-        const { itinerary } = cache.readQuery({ query: QUERY_ITINERARY });
+  function getTripIdFromUrl(){
+    return location.pathname.split('/').slice(-1)[0]
+  }
 
-        cache.writeQuery({
-          query: QUERY_ITINERARY,
-          data: { itinerary: [addItinerary, ...itinerary] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
+  const [addItinerary, { error }] = useMutation(ADD_ITINERARY)
 
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, itinerary: [...me.itinerary, addItinerary] } },
-      });
-    },
-  });
+  // TODO: FIX THIS!
+  // const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
+  //   update(cache, { data: { addItinerary } }) {
+  //     try {
+  //       const itinerary  = cache.readQuery({ query: QUERY_ITINERARY }) || {};
+        
+
+  //       cache.writeQuery({
+  //         query: QUERY_ITINERARY,
+  //         data: { itinerary: [addItinerary, ...itinerary] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+
+  //     // update me object's cache
+  //     const { me } = cache.readQuery({ query: QUERY_ME });
+  //     cache.writeQuery({
+  //       query: QUERY_ME,
+  //       data: { me: { ...me, itinerary: [...me.itinerary, addItinerary] } },
+  //     });
+  //   },
+  // });
   
 
   const handleFormSubmit = async (event) => {
@@ -50,6 +59,8 @@ const ItineraryForm = () => {
           endDate,
           name,
           details,
+          completed: false,
+          trip: getTripIdFromUrl(),
         },
       });
 
@@ -71,10 +82,12 @@ const ItineraryForm = () => {
   };
 
   const handleChange1 = (event) => {
-    const { details, value1 } = event.target;
+    const { name, value } = event.target;
+    console.log('value', value)
+    console.log(event.target);
     console.log(details)
-    if (details === 'details') {
-      setDetails(value1);
+    if (name === 'details') {
+      setDetails(value);
     }
   };
 
@@ -88,6 +101,7 @@ const ItineraryForm = () => {
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
+              {/* <input onInput= /> */}
               <input
                 name="name"
                 placeholder="Title?"
@@ -105,7 +119,7 @@ const ItineraryForm = () => {
                 value={details}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange1}
+                onInput={handleChange1}
               ></input>
             </div>
 

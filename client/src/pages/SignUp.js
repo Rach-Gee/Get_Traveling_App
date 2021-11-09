@@ -6,6 +6,9 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import '../pages/styles/loginStyles.css'
+import map from '../componets/images/worldMap.jpg'
+import { Image, FormControl, } from "@chakra-ui/react"
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -39,17 +42,23 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+    <main className="loginPage" style={{display: "flex", width: "100%", alignItems: "center"}}>
+    <aside style={{width: "70%", flex: "1 1 auto"}}>
+        <Image className="worldMap" src={map} 
+        alt="world map" style={{width: "100%"}}
+        />
+    </aside>
+     <div className="loginForm" style={{marginLeft: "auto", width:"30%"}}>
+      <div className="card">
+        <h4 className="card-header login-header">Sign Up</h4>
+        <div className="card-body">
             {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              <FormControl>
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -75,14 +84,16 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <br />
                 <button
-                  className="btn btn-block btn-primary"
+                  className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
                 </button>
               </form>
+              </FormControl>
             )}
             <p><Link to="/login"> Already have an account, Login now!</Link> </p>
             {error && (

@@ -433,6 +433,10 @@
     text-decoration: underline;
   }
   
+  .datePicker {
+    padding-left: 10px !important; 
+  }
+
   /* HEIGHT / WIDTH UTILS */
   .w-100 {
     width: 100%;
@@ -446,6 +450,14 @@
     width: 50%;
   }
   
+  .tripCard{
+    border: 1px solid #1a1a1a !important;
+  }
+
+  .tripCard1 {
+    margin: 5px !important;
+  }
+
   .w-25 {
     width: 25%;
   }

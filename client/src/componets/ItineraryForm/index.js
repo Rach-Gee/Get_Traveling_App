@@ -3,12 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_ITINERARY } from '../../utils/mutations';
-import { QUERY_ITINERARY, QUERY_SINGLE_TRIP } from '../../utils/queries';
+import { QUERY_SINGLE_TRIP } from '../../utils/queries';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Auth from '../../utils/auth';
+
+import { HStack } from "@chakra-ui/react"
 
 const ItineraryForm = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -83,9 +85,10 @@ const ItineraryForm = () => {
       {Auth.loggedIn() ? (
         <>
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+            className="justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
+          <p>Add to your itinerary:</p>
             <div className="col-12 col-lg-9">
               {/* <input onInput= /> */}
               <input
@@ -97,7 +100,6 @@ const ItineraryForm = () => {
                 onChange={handleChange}
               ></input>
             </div>
-
             <div className="col-12 col-lg-9">
               <input
                 name="details"
@@ -108,29 +110,32 @@ const ItineraryForm = () => {
                 onInput={handleChange1}
               ></input>
             </div>
-
             <div className="col-12 col-lg-9">
+            <div className="row"> 
             <div> 
               <p> Date From </p>
                 <DatePicker
                   selected={startDate}
-                  className="form-input w-100"
+                  className="form-input"
                   selectsStart
                   startDate={startDate}
                   endDate={endDate} // add the endDate to your startDate DatePicker now that it is defined
                   onChange={date => setStartDate(date)}
                 />
+            </div>
+            <div className="row datePicker"> 
                 <p> Date To </p>
                 <DatePicker
                   selected={endDate}
-                  className="form-input w-100"
+                  className="form-input"
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}
                   minDate={startDate}
                   onChange={date => setEndDate(date)}
                 />
-              </div>
+            </div>
+            </div>
             </div>
 
             <div className="col-12 col-lg-3">

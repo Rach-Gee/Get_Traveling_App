@@ -37,17 +37,18 @@ const Home = () => {
   }
 
   return (
+    //start from this DIV row as a top then col moving down FIX THIS
     <div>
               {!userParam && (
           <div
-            className="col-12 col-md-10 m-5 p-3"
+            className=" col-md-10 m-5 p-3 "
             style={{ border: '1px dotted #1a1a1a' }}
           >
             <TripForm />
           </div>
         )}
-      <div className="flex-row justify-center mb-3">
-
+      <div className="col-12">
+      <div className="row"> 
         <div>
           <TripList
             trips={user.trips}
@@ -56,6 +57,7 @@ const Home = () => {
             showUsername={false}
           />
         </div>
+      </div>
       </div>
     </div>
   );

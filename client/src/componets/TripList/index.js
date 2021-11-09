@@ -15,17 +15,18 @@ trips,
   }
 
   return (
-    <div>
+    <div className="col-12 ">
+      <div className="row ">
     {Auth.loggedIn() ? (
       <>
       {trips &&
         trips.map((trip) => (
         <Box
-        p={5}
-        shadow="md"
+        className="tripCard1"
+        shadow="2xl"
         borderWidth="1px"
         borderRadius="md">
-          <div key={trip._id} className="card m-2 btn">
+          <div key={trip._id} className="tripCard m-5 btn">
           <Checkbox size="lg" >
             <Link
               className="btn btn-primary btn-block"
@@ -41,6 +42,7 @@ trips,
           ) : (
         <p></p>
       )}
+    </div>
     </div>
   );
 };

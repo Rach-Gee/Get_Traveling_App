@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './componets/Header';
 import Footer from './componets/Foooter';
 import Home from './pages/Home';
-import Itinerary from './pages/Itinerary';
 import Login from './pages/Login';
 import Signup from './pages/SignUp'
 import SingleTrip from './pages/SingleTrip'
@@ -43,16 +42,11 @@ const client = new ApolloClient({
 function App( Component ) {
   return (
   <ApolloProvider client={client}>
-           <ChakraProvider>
+    <ChakraProvider>
     <Router>
-    <div className="flex-column justify-flex-start min-100-vh">
       <Header />
-      <div className="container">
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route exact path="/itinerary">
-          <Itinerary />
         </Route>
         <Route exact path="/login">
           <Login />
@@ -63,9 +57,7 @@ function App( Component ) {
         <Route exact path="/trip/:tripId">
           <SingleTrip />
         </Route>
-        </div>
           <Footer />
-        </div>
       </Router>
       </ChakraProvider>
     </ApolloProvider>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { LOGIN_USER } from '../../utils/mutations';
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
-import { Image, HStack, FormControl, } from "@chakra-ui/react"
-import map from '../componets/images/worldMap.jpg'
+import { Image, FormControl, } from "@chakra-ui/react"
+import map from '../../componets/images/worldMap.jpg'
+import '../styles/loginStyles.css'
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -44,16 +45,15 @@ const Login = (props) => {
   };
 
   return (
-    <main className="loginPage">
-    <HStack spacing="24px">
-      <aside>
-          <Image src={map} 
-          alt="world map"
+    <main className="loginPage" style={{display: "flex", width: "100%", alignItems: "center"}}>
+      <aside style={{width: "70%", flex: "1 1 auto"}}>
+          <Image className="worldMap" src={map} 
+          alt="world map" style={{width: "100%"}}
           />
       </aside>
-      <div className="flex-row justify-center loginForm">
+       <div className="loginForm" style={{marginLeft: "auto", width:"30%"}}>
         <div className="card">
-          <h4 className="card-header">Login</h4>
+          <h4 className="card-header login-header">Login</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -79,6 +79,7 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+              <br />
                 <button
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
@@ -99,7 +100,6 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-    </HStack>
     </main>
   );
 };

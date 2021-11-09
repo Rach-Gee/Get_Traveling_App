@@ -27,7 +27,7 @@ const SingleTrip = () => {
   }
   return (
     <div className="my-3">
-      <Heading size="lg">What is happening for {trip.name}</Heading>
+      <Heading size="lg">Itinerary for your {trip.name} holiday!</Heading>
       <div className="my-5">
         <ItineraryList itinerary={trip.itinerary} />
       </div>

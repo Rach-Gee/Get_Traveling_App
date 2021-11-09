@@ -9,10 +9,28 @@ itinerary,
   showTitle = true,
   showUsername = true,
 }) => {
-  // function getDateFromstring(){
-  //   return itinerary.startDate.split('T').slice(-1)[0]
-  // }
 
+  function addZeroIfOnlyOneChar(dateString){
+    dateString = String(dateString);
+    if(dateString.length < 2){
+      return '0' + dateString
+    }
+    return dateString
+  }
+
+  function getDateFromString(dateString){
+    const date = new Date(dateString)
+    console.log(date);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    
+    return `${addZeroIfOnlyOneChar(day)}-${addZeroIfOnlyOneChar(month)}-${year}`
+  }
+  // function getDateFromstring(){
+  //   return (itinerary.endDate).toString();
+  // }
 
   if (!itinerary.length) {
     return <h3>No Itinerary Yet</h3>;
@@ -32,7 +50,7 @@ itinerary,
                   className=""
                   to={`${itinerary.name}`}
                 >
-                  {itinerary.name} from {itinerary.startDate} to {itinerary.endDate}<br />
+                  {itinerary.name} from {getDateFromString(itinerary.startDate)} to {getDateFromString(itinerary.endDate) } <br />
                 </div>
               ) : (
                 <>

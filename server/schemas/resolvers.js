@@ -92,8 +92,8 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    completeTripUpdate: async (parent, { id, completed }) => {
-      return await Trips.findOneAndUpdate({ _id: id }, { completed });
+    completeTripUpdate: async (parent, { tripsId, completed }) => {
+      return await Trips.findOneAndUpdate({ _id: tripsId }, { completed }, {new:true});
     },
     removeTrip: async (parent, { tripsId }, context) => {
       if (context.user) {

@@ -38,10 +38,11 @@ const Home = () => {
 
   return (
     //start from this DIV row as a top then col moving down FIX THIS
-    <div>
+    <div className="h-50">
+      <h1 className="itinearayHeader"> Happy holidaying {user.username} </h1>
               {!userParam && (
           <div
-            className=" col-md-10 m-5 p-3 "
+            className="col-md-10 m-5 p-3"
             style={{ border: '1px dotted #1a1a1a' }}
           >
             <TripForm />
@@ -52,7 +53,7 @@ const Home = () => {
         <div>
           <TripList
             trips={user.trips}
-            title={`${user.username}'s trips...`}
+            title={`{user.username}'s trips...`}
             showTitle={false}
             showUsername={false}
           />

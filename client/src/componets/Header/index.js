@@ -17,8 +17,8 @@ const Header = () => {
         alt="world map"
         />
       <Box>
-      <br /> <br /> <br /> <br /> <br /> <br /> 
-      <p className="headerFont">~ not all who wander are lost </p>
+      <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
+      <p className="headerFont">~ Not all who wander are lost </p>
       </Box>
     </Stack>
   </header>

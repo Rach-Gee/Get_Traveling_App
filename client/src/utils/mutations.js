@@ -63,12 +63,13 @@ export const ADD_ITINERARY = gql`
 `;
 
 export const COMPLETE_TRIP_UPDATE = gql`
-  mutation COMPLETE_TRIP_UPDATE(
+  mutation completeTripUpdate(
     $tripsId: ID!, 
     $completed: Boolean!,
     ) {
-    COMPLETE_TRIP_UPDATE(
-      completed: $completed, 
+    completeTripUpdate(
+      tripsId: $tripsId,
+      completed: $completed 
     ) {
       _id
       name

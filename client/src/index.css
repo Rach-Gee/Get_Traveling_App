@@ -28,6 +28,14 @@
     display: block;
   }
   
+  .h-50 {
+    min-height: 66vh;
+  }
+
+  .h-45 {
+    min-height: 62vh;
+  }
+
   /**
    * Correct the font size and margin on `h1` elements within `section` and
    * `article` contexts in Chrome, Firefox, and Safari.
@@ -143,6 +151,13 @@
     border-style: none;
   }
   
+  .itinearayHeader{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+
   /* Forms
      ========================================================================== */
   /**
@@ -486,6 +501,13 @@
   
   .m-3 {
     margin: 1rem !important;
+  }
+
+  .m-c {
+    margin-top: 1rem !important;
+    margin-left:4rem !important;
+    margin-right:4rem !important; 
+    margin-bottom:4rem !important; 
   }
   
   .m-4 {
@@ -1166,6 +1188,22 @@
     font-size: 1.2rem;
     border: 1px solid #484848;
     border-radius: 0.3rem;
+  }
+
+  form .form-input1 {
+    padding: 0.5rem !important;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    margin-bottom: 0.625rem !important;
+    margin-top: 0.2rem !important;
+    font-size: 1.2rem;
+    border: 1px solid #484848;
+    border-radius: 0.3rem;
+  }
+
+  .CompleteTrip {
+    text-decoration: line-through !important;
+    background-color:red !important;
   }
   
   form .form-input.form-input-squared {

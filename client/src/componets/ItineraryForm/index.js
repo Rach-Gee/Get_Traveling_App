@@ -10,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Auth from '../../utils/auth';
 
-import { HStack } from "@chakra-ui/react"
 
 const ItineraryForm = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -27,11 +26,12 @@ const ItineraryForm = () => {
   const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
     update(cache, { data: { addItinerary } }) {
       try {
-        const  trip  = cache.readQuery({ query: QUERY_SINGLE_TRIP });      
+        const { trip } = cache.readQuery({ query: QUERY_SINGLE_TRIP });      
         console.log(trip);
         cache.writeQuery({
           query: QUERY_SINGLE_TRIP,
-          data: { trip: { ...trip, intinerary: [...trip.intinerary, addItinerary] } },
+          //FIX THIS
+          data: { trip: { ...trip, itinerary: [...trip.itinerary, addItinerary] } },
         });
       } catch (e) {
         console.error(e);
@@ -116,7 +116,7 @@ const ItineraryForm = () => {
               <p> Date From </p>
                 <DatePicker
                   selected={startDate}
-                  className="form-input"
+                  className="form-input1"
                   selectsStart
                   startDate={startDate}
                   endDate={endDate} // add the endDate to your startDate DatePicker now that it is defined
@@ -127,7 +127,7 @@ const ItineraryForm = () => {
                 <p> Date To </p>
                 <DatePicker
                   selected={endDate}
-                  className="form-input"
+                  className="form-input1"
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}

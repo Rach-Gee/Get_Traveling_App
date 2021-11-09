@@ -58,6 +58,11 @@ export const ADD_ITINERARY = gql`
         startDate
         endDate
         details
+        trip {
+          _id
+          name
+          completed
+      }
     }
   }
 `;

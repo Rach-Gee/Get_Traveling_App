@@ -26,17 +26,21 @@ const ItineraryForm = (props) => {
   const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
     update(cache, { data: { addItinerary } }) {
       try {
-        const { itinerary } = cache.readQuery({
+        const { trip } = cache.readQuery({
           query: QUERY_SINGLE_TRIP,
+          variables: {
+           tripsId: props.tripID
+          },
         });
-      
-
+        console.log(trip)
         cache.writeQuery({
           query: QUERY_SINGLE_TRIP,
           //FIX THIS
-          data: { itinerary: [addItinerary, ...itinerary] },
+          data: { trip: { ...trip, itinerary: [...trip.itinerary, addItinerary] } },
         });
-
+        console.log(trip)
+        console.log(trip.itinerary)
+        console.log(addItinerary)
       } catch (e) {
         console.error(e);
       }
@@ -46,7 +50,7 @@ const ItineraryForm = (props) => {
   
 
   const handleFormSubmit = async (event) => {
-    
+
 
     try {
       const { data } = await addItinerary({

@@ -12,7 +12,6 @@ const tripsSchema = new Schema({
     require: true,
     default: false,
   },
-  // TODO: MAKE THIS FIELD INTO PLURAL FORM eg itineraries
   itinerary: [{
     type: Schema.Types.ObjectId,
     ref: 'Itinerary'

@@ -92,15 +92,9 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  //TODO: Add check boxes FIX THIS
-    // checkTrip(){
-    //   update  the trip change the boolean into true
-    // }
-
-    // check Itinerary(){
-    //   // find one and update itienraray
-    // }
-
+    completeTripUpdate: async (parent, { id, completed }) => {
+      return await Trips.findOneAndUpdate({ _id: id }, { completed });
+    },
     removeTrip: async (parent, { tripsId }, context) => {
       if (context.user) {
         const trips = await Trips.findOneAndDelete({

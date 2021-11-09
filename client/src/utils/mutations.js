@@ -46,20 +46,33 @@ export const ADD_ITINERARY = gql`
     ) {
     addItinerary(
         trip: $trip, 
-        name: $name
+        name: $name,
         completed: $completed,
         startDate: $startDate,
         endDate: $endDate,
         details: $details,
       ) {
-     
         _id
         name
         completed
         startDate
         endDate
         details
-      
+    }
+  }
+`;
+
+export const COMPLETE_TRIP_UPDATE = gql`
+  mutation COMPLETE_TRIP_UPDATE(
+    $tripsId: ID!, 
+    $completed: Boolean!,
+    ) {
+    COMPLETE_TRIP_UPDATE(
+      completed: $completed, 
+    ) {
+      _id
+      name
+      completed
     }
   }
 `;

@@ -54,6 +54,10 @@ type User {
     ): Itinerary
     removeTrip(tripsId: ID!): Trip
     removeItinerary(itineraryId: ID!): Itinerary
+    completeTripUpdate(
+      tripsId: ID!
+      completed: Boolean!
+    ): Trip 
   }
 `;
 

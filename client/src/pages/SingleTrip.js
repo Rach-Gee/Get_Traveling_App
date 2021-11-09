@@ -9,6 +9,7 @@ import ItineraryForm from '../componets/ItineraryForm';
 
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
 
+
 const SingleTrip = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { tripId } = useParams();

@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Auth from '../../utils/auth';
 
 
-const ItineraryForm = () => {
+const ItineraryForm = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [name, setName] = useState('');
   const [details, setDetails] = useState('');
@@ -26,24 +26,27 @@ const ItineraryForm = () => {
   const [addItinerary, { error }] = useMutation(ADD_ITINERARY, {
     update(cache, { data: { addItinerary } }) {
       try {
-        const { trip } = cache.readQuery({ query: QUERY_SINGLE_TRIP });      
-        console.log(trip);
+        const { itinerary } = cache.readQuery({
+          query: QUERY_SINGLE_TRIP,
+        });
+      
+
         cache.writeQuery({
           query: QUERY_SINGLE_TRIP,
           //FIX THIS
-          data: { trip: { ...trip, itinerary: [...trip.itinerary, addItinerary] } },
+          data: { itinerary: [addItinerary, ...itinerary] },
         });
+
       } catch (e) {
         console.error(e);
       }
-
 
     },
   });
   
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    
 
     try {
       const { data } = await addItinerary({

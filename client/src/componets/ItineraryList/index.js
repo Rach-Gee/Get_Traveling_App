@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
@@ -20,7 +19,6 @@ itinerary,
 
   function getDateFromString(dateString){
     const date = new Date(dateString)
-    console.log(date);
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
@@ -28,13 +26,10 @@ itinerary,
     
     return `${addZeroIfOnlyOneChar(day)}-${addZeroIfOnlyOneChar(month)}-${year}`
   }
-  // function getDateFromstring(){
-  //   return (itinerary.endDate).toString();
-  // }
 
-  if (!itinerary.length) {
-    return <h3>No Itinerary Yet</h3>;
-  }
+  // if (!itinerary.length) {
+  //   return <h3>No Itinerary Yet</h3>;
+  // }
 
   return (
     <div>

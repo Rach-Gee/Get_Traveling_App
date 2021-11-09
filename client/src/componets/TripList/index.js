@@ -18,8 +18,6 @@ trips,
   function toggleTrip(trip){
 
     return function(event){
-
-      console.log(event.target.checked);
       completeTrip({
         variables: {
           tripsId: trip._id,

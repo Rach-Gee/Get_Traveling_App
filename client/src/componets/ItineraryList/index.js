@@ -27,9 +27,9 @@ itinerary,
     return `${addZeroIfOnlyOneChar(day)}-${addZeroIfOnlyOneChar(month)}-${year}`
   }
 
-  // if (!itinerary.length) {
-  //   return <h3>No Itinerary Yet</h3>;
-  // }
+  if (!itinerary.length) {
+    return <h3>No Itinerary Yet</h3>;
+  }
 
   return (
     <div>

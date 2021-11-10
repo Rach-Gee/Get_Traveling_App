@@ -42,13 +42,18 @@ export const QUERY_ME = gql`
 
 export const QUERY_ITINERARY = gql`
 query getItinerary {
-    interary {
+    itinerary {
         _id
         name
         completed
         startDate
         endDate
         details
+    }
+    trips {
+      _id
+      name
+      completed
     }
   }
 `;

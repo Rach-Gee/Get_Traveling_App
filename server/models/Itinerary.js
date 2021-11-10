@@ -22,7 +22,11 @@ const itinerarySchema = new Schema({
   details: {
     type: String,
     require: true,
-  }
+  },
+  trips: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Trips'
+  }]
 });
 
 const Itinerary = model('Itinerary', itinerarySchema);

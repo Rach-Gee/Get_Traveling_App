@@ -50,7 +50,7 @@ const ItineraryForm = (props) => {
   
 
   const handleFormSubmit = async (event) => {
-
+    event.preventDefault();
 
     try {
       const { data } = await addItinerary({

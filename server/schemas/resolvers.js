@@ -27,6 +27,10 @@ const resolvers = {
       const params = username ? { username } : {};
       return Trips.find(params).populate('itinerary');
     },
+    itinerary: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Itinerary.find(params).populate('trips');
+    },
     trip: async (parent, { tripsId }) => {
       return Trips.findOne({ _id: tripsId }).populate('itinerary');
     },
@@ -88,7 +92,7 @@ const resolvers = {
           runValidators: true,
         });
 
-        return updated;
+        return newItinerary;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

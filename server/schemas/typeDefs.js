@@ -25,6 +25,7 @@ type User {
     startDate: Date
     endDate: Date
     details: String
+    trips: [Trip]!
   }
 
   type Auth {
@@ -37,6 +38,7 @@ type User {
     user(username: String!): User
     trips(username: String): [Trip]
     trip(tripsId: ID!): Trip
+    itinerary(itineraryId: ID!): Itinerary
     me: User
   }
 

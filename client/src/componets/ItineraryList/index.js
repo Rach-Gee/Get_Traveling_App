@@ -28,7 +28,7 @@ itinerary,
   }
 
   if (!itinerary.length) {
-    return <h3>No Itinerary Yet</h3>;
+    return <h3 className="noData col-">No Itinerary Yet, Add Your First Itinerary Below</h3>;
   }
 
   return (

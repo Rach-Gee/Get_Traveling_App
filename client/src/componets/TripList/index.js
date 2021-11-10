@@ -29,7 +29,7 @@ trips,
   }
 
   if (!trips.length) {
-    return <h3>No Trips Yet</h3>;
+    return <h3 className="noData col-"> No Trips Yet, Add Your First Trip Above!</h3>;
   }
 
   return (

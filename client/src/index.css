@@ -115,6 +115,10 @@
     /* 2 */
   }
   
+  .noData {
+    margin-left: 2px !important;
+  }
+
   /**
    * Add the correct font size in all browsers.
    */

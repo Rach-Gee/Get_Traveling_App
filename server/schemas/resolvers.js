@@ -12,7 +12,7 @@ const dateScalar = new GraphQLScalarType({
     return value.toISOString();
   },
 })
-
+// .sort({ completed: -1 })
 const resolvers = {
   Date: dateScalar,
 
@@ -25,14 +25,14 @@ const resolvers = {
     },
     trips: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Trips.find(params).populate('itinerary');
+      return Trips.find(params).sort({ completed: -1 }).populate('itinerary');
     },
     itinerary: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Itinerary.find(params).populate('trips');
     },
     trip: async (parent, { tripsId }) => {
-      return Trips.findOne({ _id: tripsId }).populate('itinerary');
+      return Trips.findOne({ _id: tripsId }).sort({ completed: -1 }).populate('itinerary');
     },
     me: async (parent, args, context) => {
       if (context.user) {

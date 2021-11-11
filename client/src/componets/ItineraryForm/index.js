@@ -35,7 +35,6 @@ const ItineraryForm = (props) => {
         console.log(trip)
         cache.writeQuery({
           query: QUERY_SINGLE_TRIP,
-          //FIX THIS
           data: { trip: { ...trip, itinerary: [...trip.itinerary, addItinerary] } },
         });
         console.log(trip)

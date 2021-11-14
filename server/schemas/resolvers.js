@@ -18,7 +18,7 @@ const resolvers = {
 
   Query: {
     users: async () => {
-      return User.find().populate('trips');
+      return User.find().populate('trips').sort({ completed: -1 });
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('trips');
@@ -29,14 +29,14 @@ const resolvers = {
     },
     itinerary: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Itinerary.find(params).populate('trips');
+      return Itinerary.find(params).populate('trips').sort({ completed: -1 });
     },
     trip: async (parent, { tripsId }) => {
-      return Trips.findOne({ _id: tripsId }).sort({ completed: -1 }).populate('itinerary');
+      return Trips.findOne({ _id: tripsId }).sort({ completed: -1 }).populate('itinerary')
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('trips');
+        return User.findOne({ _id: context.user._id }).populate('trips').sort({ completed: -1 });
       }
       throw new AuthenticationError('You need to be logged in!');
     },

@@ -26,6 +26,7 @@ To utalise this app navigate to https://secure-atoll-12616.herokuapp.com/login.
 ## Usage
        
 Log in or signup, and start planning your trips by entering your trip name. Once the trip card has been produced, you can click on this and plug in each leg of your trip. You can be as detailed or as general as you would like. Once your trip is complete you can tick the holiday.
+![Capture](https://user-images.githubusercontent.com/83891242/141671241-d2f85725-1ed8-49fd-96b3-7b7b3e8ca4f9.PNG)
 
 ## License
 
